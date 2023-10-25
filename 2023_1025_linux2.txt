@@ -1,0 +1,335 @@
+root@wjgk0822:/# cd home
+root@wjgk0822:/home# mysql
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 11
+Server version: 8.0.34-0ubuntu0.22.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database test;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> show databases
+    -> ;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| test               |
++--------------------+
+5 rows in set (0.01 sec)
+
+mysql> drop database test;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> show databases
+    -> ;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.00 sec)
+
+mysql> drop database if exists testdb;
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+
+mysql> create database testdb;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| testdb             |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> use testdb;
+Database changed
+mysql> create table usertbl(
+    -> userID char(8) not NULL primary key,
+    -> name varchar(10) not NULL,
+    -> birthyear int not null,
+    -> address char(8) not null,
+    -> height int,
+    -> resDate date);
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> show tables;
++------------------+
+| Tables_in_testdb |
++------------------+
+| usertbl          |
++------------------+
+1 row in set (0.01 sec)
+
+mysql> desc usertbl;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| userID    | char(8)     | NO   | PRI | NULL    |       |
+| name      | varchar(10) | NO   |     | NULL    |       |
+| birthyear | int         | NO   |     | NULL    |       |
+| address   | char(8)     | NO   |     | NULL    |       |
+| height    | int         | YES  |     | NULL    |       |
+| resDate   | date        | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> show tables;
++------------------+
+| Tables_in_testdb |
++------------------+
+| usertbl          |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> insert into usertbl values('LSG','Seung gi','1987','seoul','187','2002.8.8');
+Query OK, 1 row affected, 1 warning (0.02 sec)
+
+mysql> select userid from usertbl;
++--------+
+| userid |
++--------+
+| LSG    |
++--------+
+1 row in set (0.00 sec)
+
+mysql> desc usertbl
+    -> ;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| userID    | char(8)     | NO   | PRI | NULL    |       |
+| name      | varchar(10) | NO   |     | NULL    |       |
+| birthyear | int         | NO   |     | NULL    |       |
+| address   | char(8)     | NO   |     | NULL    |       |
+| height    | int         | YES  |     | NULL    |       |
+| resDate   | date        | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> desc usertbl.values;
+ERROR 1049 (42000): Unknown database 'usertbl'
+mysql> desc usertbl values;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'values' at line 1
+mysql> select userid from usertbl desc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc' at line 1
+mysql> desc userid;
+ERROR 1146 (42S02): Table 'testdb.userid' doesn't exist
+mysql> select * from usertbl;
++--------+----------+-----------+---------+--------+------------+
+| userID | name     | birthyear | address | height | resDate    |
++--------+----------+-----------+---------+--------+------------+
+| LSG    | Seung gi |      1987 | seoul   |    187 | 2002-08-08 |
++--------+----------+-----------+---------+--------+------------+
+1 row in set (0.00 sec)
+
+mysql> insert into usertbl values('KKH','Kim qyeong ho',1971,'Jeon nam',180,'2002.10.01');
+ERROR 1406 (22001): Data too long for column 'name' at row 1
+mysql> insert into usertbl values('KKH','Kim qyeong ho',1971,'Jeon nam',180,'2002.10.01');
+ERROR 1406 (22001): Data too long for column 'name' at row 1
+mysql> insert int usertbl values('KKH','Kim GHO',1971,'Jeonam',180,'2002.10.01');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'int usertbl values('KKH','Kim GHO',1971,'Jeonam',180,'2002.10.01')' at line 1
+mysql> insert into usertbl values('KKH','KimGH','1971','Jeonam','180','2002.10.01');
+Query OK, 1 row affected, 1 warning (0.04 sec)
+
+mysql> insert into usertbl values('KBS','KimBS','1979','Gyeongnam','170','2002-09-10');
+ERROR 1406 (22001): Data too long for column 'address' at row 1
+mysql> insert into usertbl values('KBS','KimBS','1979','Gyeong','170','2002-09-10');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select userid, name from usertbl;
++--------+----------+
+| userid | name     |
++--------+----------+
+| KBS    | KimBS    |
+| KKH    | KimGH    |
+| LSG    | Seung gi |
++--------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select userid, name from usertbl where height>='180';
++--------+----------+
+| userid | name     |
++--------+----------+
+| KKH    | KimGH    |
+| LSG    | Seung gi |
++--------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select userid, name from usertbl where height>='175';
++--------+----------+
+| userid | name     |
++--------+----------+
+| KKH    | KimGH    |
+| LSG    | Seung gi |
++--------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select userid, name from usertbl where height>='175' and height<=180;
++--------+-------+
+| userid | name  |
++--------+-------+
+| KKH    | KimGH |
++--------+-------+
+1 row in set (0.00 sec)
+
+mysql> select userid, name from usertbl where height<='175' and height>=180;
+Empty set (0.01 sec)
+
+mysql> select userid, name from usertbl where height<='175' or height>'180';
++--------+----------+
+| userid | name     |
++--------+----------+
+| KBS    | KimBS    |
+| LSG    | Seung gi |
++--------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select uerid from usertbl where height between 180 and 183;
+ERROR 1054 (42S22): Unknown column 'uerid' in 'field list'
+mysql> select userid from usertbl where height between 180 and 183;
++--------+
+| userid |
++--------+
+| KKH    |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select * from usertbl;
++--------+----------+-----------+---------+--------+------------+
+| userID | name     | birthyear | address | height | resDate    |
++--------+----------+-----------+---------+--------+------------+
+| KBS    | KimBS    |      1979 | Gyeong  |    170 | 2002-09-10 |
+| KKH    | KimGH    |      1971 | Jeonam  |    180 | 2002-10-01 |
+| LSG    | Seung gi |      1987 | seoul   |    187 | 2002-08-08 |
++--------+----------+-----------+---------+--------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select userid from usertbl where height between 180 and 189;
++--------+
+| userid |
++--------+
+| KKH    |
+| LSG    |
++--------+
+2 rows in set (0.00 sec)
+
+mysql> select name from usertbl where userid in('KBS','kkh');
++-------+
+| name  |
++-------+
+| KimBS |
+| KimGH |
++-------+
+2 rows in set (0.00 sec)
+
+mysql> select userid, name from usertbl where name like 'Kim%';
++--------+-------+
+| userid | name  |
++--------+-------+
+| KBS    | KimBS |
+| KKH    | KimGH |
++--------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select name,height from usertbl where height>(select height from usertbl where name='KimGH');
++----------+--------+
+| name     | height |
++----------+--------+
+| Seung gi |    187 |
++----------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from usertbl order by birthyear;
++--------+----------+-----------+---------+--------+------------+
+| userID | name     | birthyear | address | height | resDate    |
++--------+----------+-----------+---------+--------+------------+
+| KKH    | KimGH    |      1971 | Jeonam  |    180 | 2002-10-01 |
+| KBS    | KimBS    |      1979 | Gyeong  |    170 | 2002-09-10 |
+| LSG    | Seung gi |      1987 | seoul   |    187 | 2002-08-08 |
++--------+----------+-----------+---------+--------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from usertbl order by address;
++--------+----------+-----------+---------+--------+------------+
+| userID | name     | birthyear | address | height | resDate    |
++--------+----------+-----------+---------+--------+------------+
+| KBS    | KimBS    |      1979 | Gyeong  |    170 | 2002-09-10 |
+| KKH    | KimGH    |      1971 | Jeonam  |    180 | 2002-10-01 |
+| LSG    | Seung gi |      1987 | seoul   |    187 | 2002-08-08 |
++--------+----------+-----------+---------+--------+------------+
+3 rows in set (0.01 sec)
+
+mysql> insert into usertbl values('JYP','joyong','1950','seoul','166','2000-01-01');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from usertbl;
++--------+----------+-----------+---------+--------+------------+
+| userID | name     | birthyear | address | height | resDate    |
++--------+----------+-----------+---------+--------+------------+
+| JYP    | joyong   |      1950 | seoul   |    166 | 2000-01-01 |
+| KBS    | KimBS    |      1979 | Gyeong  |    170 | 2002-09-10 |
+| KKH    | KimGH    |      1971 | Jeonam  |    180 | 2002-10-01 |
+| LSG    | Seung gi |      1987 | seoul   |    187 | 2002-08-08 |
++--------+----------+-----------+---------+--------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select distinct address from usertbl;
++---------+
+| address |
++---------+
+| seoul   |
+| Gyeong  |
+| Jeonam  |
++---------+
+3 rows in set (0.00 sec)
+
+mysql> update usertbl set height='188' where name='KimGH';
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from usertbl;
++--------+----------+-----------+---------+--------+------------+
+| userID | name     | birthyear | address | height | resDate    |
++--------+----------+-----------+---------+--------+------------+
+| JYP    | joyong   |      1950 | seoul   |    166 | 2000-01-01 |
+| KBS    | KimBS    |      1979 | Gyeong  |    170 | 2002-09-10 |
+| KKH    | KimGH    |      1971 | Jeonam  |    188 | 2002-10-01 |
+| LSG    | Seung gi |      1987 | seoul   |    187 | 2002-08-08 |
++--------+----------+-----------+---------+--------+------------+
+4 rows in set (0.00 sec)
+
+mysql> delete from usertbl where birthyear <1960;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from usertbl;
++--------+----------+-----------+---------+--------+------------+
+| userID | name     | birthyear | address | height | resDate    |
++--------+----------+-----------+---------+--------+------------+
+| KBS    | KimBS    |      1979 | Gyeong  |    170 | 2002-09-10 |
+| KKH    | KimGH    |      1971 | Jeonam  |    188 | 2002-10-01 |
+| LSG    | Seung gi |      1987 | seoul   |    187 | 2002-08-08 |
++--------+----------+-----------+---------+--------+------------+
+3 rows in set (0.00 sec)
+
+mysql> 
+
