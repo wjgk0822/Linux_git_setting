@@ -1,0 +1,317 @@
+
+
+root@wjgk0822:/home/wjgk0822# cd ..
+root@wjgk0822:/home# ls
+wjgk0822
+root@wjgk0822:/home# cd ..
+root@wjgk0822:/# ls
+bin    dev   lib    libx32      mnt   root  snap      sys    usr
+boot   etc   lib32  lost+found  opt   run   srv       test2  var
+cdrom  home  lib64  media       proc  sbin  swapfile  tmp
+root@wjgk0822:/# cd /var/w/ww/html
+bash: cd: /var/w/ww/html: No such file or directory
+root@wjgk0822:/# cd /var/www/html
+root@wjgk0822:/var/www/html# ls
+index.html
+root@wjgk0822:/var/www/html# vi phpinfo.php
+Error detected while processing /root/.vimrc:
+line   47:
+E722: Missing comma in Dictionary: 
+line   50:
+E1128: } without {: }
+Press ENTER or type command to continue
+root@wjgk0822:/var/www/html# mysql
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.0.34-0ubuntu0.22.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show database 
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'database' at line 1
+mysql> exit
+Bye
+root@wjgk0822:/var/www/html# cd
+root@wjgk0822:~# mysql
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 10
+Server version: 8.0.34-0ubuntu0.22.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show database
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'database' at line 1
+mysql> quit
+Bye
+root@wjgk0822:~# mysqjl -u root -p
+Command 'mysqjl' not found, did you mean:
+  command 'mysql' from deb mysql-client-core-8.0 (8.0.34-0ubuntu0.22.04.1)
+  command 'mysql' from deb mariadb-client-core-10.6 (1:10.6.12-0ubuntu0.22.04.1)
+Try: apt install <deb name>
+root@wjgk0822:~# ls
+my_video-1.mkv  my_video-2.mkv  opencv_build  snap  vboxpostinstall.sh
+root@wjgk0822:~# cd ..
+root@wjgk0822:/# ls
+bin    dev   lib    libx32      mnt   root  snap      sys    usr
+boot   etc   lib32  lost+found  opt   run   srv       test2  var
+cdrom  home  lib64  media       proc  sbin  swapfile  tmp
+root@wjgk0822:/# cd home
+root@wjgk0822:/home# mysql
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 11
+Server version: 8.0.34-0ubuntu0.22.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database test;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> show databases
+    -> ;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| test               |
++--------------------+
+5 rows in set (0.01 sec)
+
+mysql> drop database test;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> show databases
+    -> ;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.00 sec)
+
+mysql> drop database if exists testdb;
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+
+mysql> create database testdb;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| testdb             |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> use testdb;
+Database changed
+mysql> create table usertbl(
+    -> userID char(8) not NULL primary key,
+    -> name varchar(10) not NULL,
+    -> birthyear int not null,
+    -> address char(8) not null,
+    -> height int,
+    -> resDate date);
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> show tables;
++------------------+
+| Tables_in_testdb |
++------------------+
+| usertbl          |
++------------------+
+1 row in set (0.01 sec)
+
+mysql> desc usertbl;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| userID    | char(8)     | NO   | PRI | NULL    |       |
+| name      | varchar(10) | NO   |     | NULL    |       |
+| birthyear | int         | NO   |     | NULL    |       |
+| address   | char(8)     | NO   |     | NULL    |       |
+| height    | int         | YES  |     | NULL    |       |
+| resDate   | date        | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> show tables;
++------------------+
+| Tables_in_testdb |
++------------------+
+| usertbl          |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> insert into usertbl values('LSG','Seung gi','1987','seoul','187','2002.8.8');
+Query OK, 1 row affected, 1 warning (0.02 sec)
+
+mysql> select userid from usertbl;
++--------+
+| userid |
++--------+
+| LSG    |
++--------+
+1 row in set (0.00 sec)
+
+mysql> desc usertbl
+    -> ;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| userID    | char(8)     | NO   | PRI | NULL    |       |
+| name      | varchar(10) | NO   |     | NULL    |       |
+| birthyear | int         | NO   |     | NULL    |       |
+| address   | char(8)     | NO   |     | NULL    |       |
+| height    | int         | YES  |     | NULL    |       |
+| resDate   | date        | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> desc usertbl.values;
+ERROR 1049 (42000): Unknown database 'usertbl'
+mysql> desc usertbl values;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'values' at line 1
+mysql> select userid from usertbl desc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc' at line 1
+mysql> desc userid;
+ERROR 1146 (42S02): Table 'testdb.userid' doesn't exist
+mysql> select * from usertbl;
++--------+----------+-----------+---------+--------+------------+
+| userID | name     | birthyear | address | height | resDate    |
++--------+----------+-----------+---------+--------+------------+
+| LSG    | Seung gi |      1987 | seoul   |    187 | 2002-08-08 |
++--------+----------+-----------+---------+--------+------------+
+1 row in set (0.00 sec)
+
+mysql> insert into usertbl values('KKH','Kim qyeong ho',1971,'Jeon nam',180,'2002.10.01');
+ERROR 1406 (22001): Data too long for column 'name' at row 1
+mysql> insert into usertbl values('KKH','Kim qyeong ho',1971,'Jeon nam',180,'2002.10.01');
+ERROR 1406 (22001): Data too long for column 'name' at row 1
+mysql> insert int usertbl values('KKH','Kim GHO',1971,'Jeonam',180,'2002.10.01');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'int usertbl values('KKH','Kim GHO',1971,'Jeonam',180,'2002.10.01')' at line 1
+mysql> insert into usertbl values('KKH','KimGH','1971','Jeonam','180','2002.10.01');
+Query OK, 1 row affected, 1 warning (0.04 sec)
+
+mysql> insert into usertbl values('KBS','KimBS','1979','Gyeongnam','170','2002-09-10');
+ERROR 1406 (22001): Data too long for column 'address' at row 1
+mysql> insert into usertbl values('KBS','KimBS','1979','Gyeong','170','2002-09-10');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select userid, name from usertbl;
++--------+----------+
+| userid | name     |
++--------+----------+
+| KBS    | KimBS    |
+| KKH    | KimGH    |
+| LSG    | Seung gi |
++--------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select userid, name from usertbl where height>='180';
++--------+----------+
+| userid | name     |
++--------+----------+
+| KKH    | KimGH    |
+| LSG    | Seung gi |
++--------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select userid, name from usertbl where height>='175';
++--------+----------+
+| userid | name     |
++--------+----------+
+| KKH    | KimGH    |
+| LSG    | Seung gi |
++--------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select userid, name from usertbl where height>='175' and height<=180;
++--------+-------+
+| userid | name  |
++--------+-------+
+| KKH    | KimGH |
++--------+-------+
+1 row in set (0.00 sec)
+
+mysql> select userid, name from usertbl where height<='175' and height>=180;
+Empty set (0.01 sec)
+
+mysql> select userid, name from usertbl where height<='175' or height>'180';
++--------+----------+
+| userid | name     |
++--------+----------+
+| KBS    | KimBS    |
+| LSG    | Seung gi |
++--------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select uerid from usertbl where height between 180 and 183;
+ERROR 1054 (42S22): Unknown column 'uerid' in 'field list'
+mysql> select userid from usertbl where height between 180 and 183;
++--------+
+| userid |
++--------+
+| KKH    |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select * from usertbl;
++--------+----------+-----------+---------+--------+------------+
+| userID | name     | birthyear | address | height | resDate    |
++--------+----------+-----------+---------+--------+------------+
+| KBS    | KimBS    |      1979 | Gyeong  |    170 | 2002-09-10 |
+| KKH    | KimGH    |      1971 | Jeonam  |    180 | 2002-10-01 |
+| LSG    | Seung gi |      1987 | seoul   |    187 | 2002-08-08 |
++--------+----------+-----------+---------+--------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select userid from usertbl where height between 180 and 189;
++--------+
+| userid |
++--------+
+| KKH    |
+| LSG    |
++--------+
+2 rows in set (0.00 sec)
+
+mysql> 
+
+
+
+
+
+
+
+
+
+
