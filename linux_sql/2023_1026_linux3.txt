@@ -1,0 +1,78 @@
+wjgk0822@wjgk0822:~$ su
+Password: 
+root@wjgk0822:/home/wjgk0822# ls
+ cam        'git token'       my_video-3.mkv   second      workspace
+ Desktop     Music            opencv           snap
+ Documents   my_photo-1.jpg   opencv_contrib   Templates
+ Downloads   my_video-1.mkv   Pictures         test
+ first.cpp   my_video-2.mkv   Public           Videos
+root@wjgk0822:/home/wjgk0822# sudo snap install mysql-workbench-community
+mysql-workbench-community 8.0.32 from Tonin Bolzan (tonybolzan) installed
+root@wjgk0822:/home/wjgk0822# ls
+ cam        'git token'       my_video-3.mkv   second      workspace
+ Desktop     Music            opencv           snap
+ Documents   my_photo-1.jpg   opencv_contrib   Templates
+ Downloads   my_video-1.mkv   Pictures         test
+ first.cpp   my_video-2.mkv   Public           Videos
+root@wjgk0822:/home/wjgk0822# sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf
+Error detected while processing /root/.vimrc:
+line    5:
+E185: Cannot find color scheme 'onedark'
+[coc.nvim] "node" is not executable, checkout https://nodejs.org/en/download/
+Press ENTER or type command to continue
+root@wjgk0822:/home/wjgk0822# sudo service mysql restart
+root@wjgk0822:/home/wjgk0822# sudo mysql -u root -p 
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.34-0ubuntu0.22.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> quit
+Bye
+root@wjgk0822:/home/wjgk0822# sudo ufw status verbose
+Status: inactive
+root@wjgk0822:/home/wjgk0822# sudo ufw enable 
+Firewall is active and enabled on system startup
+root@wjgk0822:/home/wjgk0822# sudo ufw status verbose
+Status: active
+Logging: on (low)
+Default: deny (incoming), allow (outgoing), disabled (routed)
+New profiles: skip
+root@wjgk0822:/home/wjgk0822# sudo mysql-workbench-community
+mkdir: cannot create directory '/run/user/0': Permission denied
+Using /snap/mysql-workbench-community/12/usr/lib/x86_64-linux-gnu/libproj.so.
+Authorization required, but no authorization protocol specified
+
+(mysql-workbench-bin:17680): Gtk-WARNING **: 11:38:10.845: cannot open display: :0
+root@wjgk0822:/home/wjgk0822# mysql 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 12
+Server version: 8.0.34-0ubuntu0.22.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> alter user 'root'@'localhost'
+    -> identified with mysql_native_password by '<user's own password>';
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> flush privileges;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> exit
+Bye
+root@wjgk0822:/home/wjgk0822#       
+
