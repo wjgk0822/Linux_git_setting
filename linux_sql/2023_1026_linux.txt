@@ -1,0 +1,232 @@
+wjgk0822@wjgk0822:~$ su
+Password: 
+root@wjgk0822:/home/wjgk0822# ls
+ cam        'git token'       my_video-2.mkv   Pictures   Templates
+ Desktop     Music            my_video-3.mkv   Public     test
+ Documents   my_photo-1.jpg   opencv           second     Videos
+ Downloads   my_video-1.mkv   opencv_contrib   snap       workspace
+root@wjgk0822:/home/wjgk0822# vi ~/.vimrc
+Error detected while processing /root/.vimrc:
+line   47:
+E722: Missing comma in Dictionary: 
+line   50:
+E1128: } without {: }
+Press ENTER or type command to continue
+root@wjgk0822:/home/wjgk0822# nano ~/.vimrc
+root@wjgk0822:/home/wjgk0822# vim ~/.vimrc
+Error detected while processing /root/.vimrc:
+line   47:
+E722: Missing comma in Dictionary: 
+line   50:
+E1128: } without {: }
+Press ENTER or type command to continue
+root@wjgk0822:/home/wjgk0822# nano ~/.vimrc
+root@wjgk0822:/home/wjgk0822# vim +PluginInstall +qall
+Error detected while processing /root/.vimrc:
+line    5:
+E185: Cannot find color scheme 'onedark'
+Press ENTER or type command to continue
+root@wjgk0822:/home/wjgk0822# vim first.cpp
+Error detected while processing /root/.vimrc:
+line    5:
+E185: Cannot find color scheme 'onedark'
+[coc.nvim] "node" is not executable, checkout https://nodejs.org/en/download/
+Press ENTER or type command to continue
+[1]+  Stopped                 vim first.cpp
+root@wjgk0822:/home/wjgk0822# vim first.cpp
+Error detected while processing /root/.vimrc:
+line    5:
+E185: Cannot find color scheme 'onedark'
+[coc.nvim] "node" is not executable, checkout https://nodejs.org/en/download/
+Press ENTER or type command to continue
+root@wjgk0822:/home/wjgk0822# ls
+ cam         Downloads    Music            my_video-2.mkv   opencv_contrib   second      test
+ Desktop     first.cpp    my_photo-1.jpg   my_video-3.mkv   Pictures         snap        Videos
+ Documents  'git token'   my_video-1.mkv   opencv           Public           Templates   workspace
+root@wjgk0822:/home/wjgk0822# mysql
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.34-0ubuntu0.22.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use usertbl
+ERROR 1049 (42000): Unknown database 'usertbl'
+mysql> quit
+Bye
+root@wjgk0822:/home/wjgk0822# ls
+ cam        'git token'       my_video-3.mkv   second      workspace
+ Desktop     Music            opencv           snap
+ Documents   my_photo-1.jpg   opencv_contrib   Templates
+ Downloads   my_video-1.mkv   Pictures         test
+ first.cpp   my_video-2.mkv   Public           Videos
+root@wjgk0822:/home/wjgk0822# cd ..
+root@wjgk0822:/home# ls
+wjgk0822
+root@wjgk0822:/home# cd ..
+root@wjgk0822:/# ls
+bin    dev   lib    libx32      mnt   root  snap      sys    usr
+boot   etc   lib32  lost+found  opt   run   srv       test2  var
+cdrom  home  lib64  media       proc  sbin  swapfile  tmp
+root@wjgk0822:/# cd home
+root@wjgk0822:/home# mysql
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.0.34-0ubuntu0.22.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use testdb
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> select * from usertbl
+    -> ;
++--------+----------+-----------+---------+--------+------------+
+| userID | name     | birthyear | address | height | resDate    |
++--------+----------+-----------+---------+--------+------------+
+| KBS    | KimBS    |      1979 | Gyeong  |    170 | 2002-09-10 |
+| KKH    | KimGH    |      1971 | Jeonam  |    188 | 2002-10-01 |
+| LSG    | Seung gi |      1987 | seoul   |    187 | 2002-08-08 |
++--------+----------+-----------+---------+--------+------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into usertbl values('SSK','SunSG','1979','seoul',186','2013.12.12');
+    '> 
+    '> ;
+    '> insert into usertbl values('SSK','SunSG','1979','seoul',186','2013.12.12')
+    -> ^C
+mysql> insert into usertbl values('SSK','SunSG','1979','seoul',186','2013-12-12');
+    '> ^C
+mysql> insert into usertbl values('SSK','SunSG','1979','seoul','186','2013.12.12');
+Query OK, 1 row affected, 1 warning (0.01 sec)
+
+mysql> insert into usertbl values('LJB','limjb','1963','seoul','182','2009.9.9');
+Query OK, 1 row affected, 1 warning (0.05 sec)
+
+mysql> insert into usertbl values('YJS',Yoon','1969','GyNam','170','2005.5.5');
+    '> ^C
+mysql> insert into usertbl values('YJS','Yoon','1969','GyNam','170','2005.5.5');
+
+Query OK, 1 row affected, 1 warning (0.00 sec)
+
+mysql> insert into usertbl values('EJW','Euen','1978','GyBuk','174','2014.3.3'); 
+Query OK, 1 row affected, 1 warning (0.05 sec)
+
+mysql> insert into usertbl values('JKW','Jokw','1965','Gygi','172','2010-10-10');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into usertbl values('BBK','Babby','1973','seoul','176','2013-5-5');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from usertbl
+    -> ;
++--------+----------+-----------+---------+--------+------------+
+| userID | name     | birthyear | address | height | resDate    |
++--------+----------+-----------+---------+--------+------------+
+| BBK    | Babby    |      1973 | seoul   |    176 | 2013-05-05 |
+| EJW    | Euen     |      1978 | GyBuk   |    174 | 2014-03-03 |
+| JKW    | Jokw     |      1965 | Gygi    |    172 | 2010-10-10 |
+| KBS    | KimBS    |      1979 | Gyeong  |    170 | 2002-09-10 |
+| KKH    | KimGH    |      1971 | Jeonam  |    188 | 2002-10-01 |
+| LJB    | limjb    |      1963 | seoul   |    182 | 2009-09-09 |
+| LSG    | Seung gi |      1987 | seoul   |    187 | 2002-08-08 |
+| SSK    | SunSG    |      1979 | seoul   |    186 | 2013-12-12 |
+| YJS    | Yoon     |      1969 | GyNam   |    170 | 2005-05-05 |
++--------+----------+-----------+---------+--------+------------+
+9 rows in set (0.00 sec)
+
+mysql> create table buytbl;
+ERROR 4028 (HY000): A table must have at least one visible column.
+mysql> create table buytbl
+    -> (
+    -> num int auto_increment not null primary key,
+    -> userId char(8) not null,
+    -> prodname char(8) not null,
+    -> groupname char(8),
+    -> price int not null,
+    -> amount int not null,
+    -> foreign key (userId) references usertbl(userId)
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> show tables;
++------------------+
+| Tables_in_testdb |
++------------------+
+| buytbl           |
+| usertbl          |
++------------------+
+2 rows in set (0.01 sec)
+
+mysql> insert into buytbl values(null,'KBS','eboots',NULL,30,2);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from buytbl
+    -> ;
++-----+--------+----------+-----------+-------+--------+
+| num | userId | prodname | groupname | price | amount |
++-----+--------+----------+-----------+-------+--------+
+|   1 | KBS    | eboots   | NULL      |    30 |      2 |
++-----+--------+----------+-----------+-------+--------+
+1 row in set (0.00 sec)
+
+mysql> insert into buytbl values(null,'KBS','laptob','electirc',1000,1);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into buytbl values(null,'KBS','monitor','electirc',200,1);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into buytbl values(null,'BBK','monitor','electirc',200,5);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into buytbl values(null,'KBS','jeans','clothe',50,3);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into buytbl values(null,'KBS','memory','electirc',80,10);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into buytbl values(null,'SSK','book','Book',15,5);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into buytbl values(null,'EJW','book','Book',15,2);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into buytbl values(null,'EJW','jeans','clothe',50,1);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into buytbl values(null,'BBK','eboots',NULL,30,2);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from buytbl;
++-----+--------+----------+-----------+-------+--------+
+| num | userId | prodname | groupname | price | amount |
++-----+--------+----------+-----------+-------+--------+
+|   1 | KBS    | eboots   | NULL      |    30 |      2 |
+|   2 | KBS    | laptob   | electirc  |  1000 |      1 |
+|   3 | KBS    | monitor  | electirc  |   200 |      1 |
+|   4 | BBK    | monitor  | electirc  |   200 |      5 |
+|   5 | KBS    | jeans    | clothe    |    50 |      3 |
+|   6 | KBS    | memory   | electirc  |    80 |     10 |
+|   7 | SSK    | book     | Book      |    15 |      5 |
+|   8 | EJW    | book     | Book      |    15 |      2 |
+|   9 | EJW    | jeans    | clothe    |    50 |      1 |
+|  10 | BBK    | eboots   | NULL      |    30 |      2 |
++-----+--------+----------+-----------+-------+--------+
+10 rows in set (0.00 sec)
+
+mysql> 
+
